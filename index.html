@@ -9,11 +9,46 @@
     <link rel="stylesheet" href="./style.css">
     <script defer src="./build/build.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 
 <body>
+    <div class="container">
+        <header>
+            Kalender
+        </header>
 
+        <section class="todo">
+            To Do-list
+        </section>
+
+        <div class="calendar">
+            <div class="month">
+                <div class="previous" onclick="moveDate('previous')">
+                    <span>Tidigare</span>
+                </div>
+                <div>
+                    <h2 id="month"></h2>
+                </div>
+                <div class="next" onclick="moveDate('next')">
+                    <span>Nästa</span>
+                </div>
+            </div>
+            <ul class="weekdays">
+                <li>Söndag</li>
+                <li>Måndag</li>
+                <li>Tisdag</li>
+                <li>Onsdag</li>
+                <li>Torsdag</li>
+                <li>Fredag</li>
+                <li>Lördag</li>
+            </ul>
+            <div class="days">
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
