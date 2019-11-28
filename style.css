@@ -1,68 +1,93 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    font-family: 'Montserrat', sans-serif;
-    height: 100vh;
-    width: 100vw;
-}
-
-.container {
-    display: grid;
-    grid-template: 'clock header' 'todo calendar' 1fr / 16rem;
-}
-
-.clockContainer {
-    grid-area: clock;
-}
-
-header {
-    grid-area: header;
-    font-size: 1.5rem;
-    height: 15vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h2 {
-    font-size: 2rem;
-}
-
-.todo {
-    grid-area: todo;
-}
-
-.calendar {
-    grid-area: calendar;
-    display: flex;
-    flex-direction: column;
-    height: 50%;
-    width: 60%;
-}
-
-.month {
-    height: 10vh;
-    display: flex;
-    background-color: palevioletred;
-}
-
-.weekdays {
-    display: grid;
-    background-color: palegoldenrod;
-    grid-template-columns: repeat(7, 1fr);
-}
-
-.days {
-    height: 70vh;
-    display: grid;
-    background-color: palegreen;
-    grid-template-columns: repeat(7, 1fr);
-}
-
-ul {
-    list-style-type: none;
-}
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body {
+        font-family: 'Montserrat', sans-serif;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+    .container {
+        display: grid;
+        grid-template: 'clock header' 'todo calendar' 1fr / 16rem;
+    }
+    
+    .clockContainer {
+        grid-area: clock;
+    }
+    
+    header {
+        grid-area: header;
+        font-size: 1.5rem;
+        height: 15vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .todo {
+        grid-area: todo;
+    }
+    
+    .calendar {
+        grid-area: calendar;
+        display: flex;
+        flex-direction: column;
+        height: 50%;
+        width: 60%;
+    }
+    
+    .month {
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        background-color: rgb(158, 218, 240);
+        border: 0.01rem;
+        border-style: solid;
+    }
+    
+    .weekdays {
+        display: grid;
+        background-color: rgb(223, 223, 223);
+        grid-template-columns: repeat(7, 1fr);
+        border: 0.01rem;
+        border-style: solid;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    li {
+        justify-content: center;
+        display: flex;
+    }
+    
+    i {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 24px;
+    }
+    
+    .days>div {
+        border: 0.01em;
+        border-style: groove;
+        border-color: rgb(118, 118, 118);
+        padding: 1rem;
+    }
+    
+    .days {
+        height: 70vh;
+        display: grid;
+        background-color: rgb(255, 255, 255);
+        grid-template-columns: repeat(7, 1fr);
+        border: 0.01rem;
+        border-style: solid;
+    }
