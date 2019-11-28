@@ -1,0 +1,14 @@
+/* fieldset {
+    border: none;
+} */
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+input, 
+label, 
+button {
+    margin: .5rem;
+}
