@@ -3,7 +3,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
     width: 100vw;
@@ -11,9 +12,11 @@ html, body {
 
 .container {
     display: grid;
-    grid-template: 
-    'header header'
-    'todo calendar' 1fr / 16rem;
+    grid-template: 'clock header' 'todo calendar' 1fr / 16rem;
+}
+
+.clockContainer {
+    grid-area: clock;
 }
 
 header {
@@ -58,8 +61,6 @@ h2 {
     display: grid;
     background-color: palegreen;
     grid-template-columns: repeat(7, 1fr);
-
-
 }
 
 ul {

@@ -9,13 +9,16 @@
     <link rel="stylesheet" href="./style.css">
     <script defer src="./build/build.js"></script>
 
+    <!-- Fonts & icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous" />
 
     <title>Document</title>
 </head>
 
 <body>
     <div class="container">
+        <div id="clockDisplay" class="clockContainer"></div>
         <header>
             Kalender
         </header>
@@ -27,13 +30,15 @@
         <div class="calendar">
             <div class="month">
                 <div class="previous" onclick="moveDate('previous')">
-                    <span>Tidigare</span>
+                    <span><i class="fas fa-angle-left"></i>
+                    </span>
                 </div>
                 <div>
                     <h2 id="month"></h2>
                 </div>
                 <div class="next" onclick="moveDate('next')">
-                    <span>Nästa</span>
+                    <span><i class="fas fa-angle-right"></i>
+                    </span>
                 </div>
             </div>
             <ul class="weekdays">
