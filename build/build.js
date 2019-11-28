@@ -60,10 +60,9 @@ function renderTime() {
 
     // Date
     let myDate = new Date();
-    let year = myDate.getFullYear();
-    if (year < 1000) {
-        year += 1900
-    }
+    // if (year < 1000) {
+        // year += 1900
+    // }
     let day = myDate.getDay();
     let month = myDate.getMonth();
     let daym = myDate.getDate();
@@ -91,8 +90,8 @@ function renderTime() {
     }
 
     let myClock = document.getElementById("clockDisplay");
-    myClock.textContent = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + year + " " + h + ":" + m + ":" + s;
-    myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + year + " " + h + ":" + m + ":" + s;
+    myClock.textContent = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
+    myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
 
     setTimeout("renderTime()", 1000);
 }
