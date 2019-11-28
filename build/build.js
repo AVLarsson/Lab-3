@@ -18,16 +18,16 @@ function printDate() {
 
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     const months = [
-        "January",
-        "February",
-        "March",
+        "Januari",
+        "Februari",
+        "Mars",
         "April",
-        "May",
-        "June",
-        "July",
-        "August",
+        "Maj",
+        "Juni",
+        "Juli",
+        "Augusti",
         "September",
-        "October",
+        "Oktober",
         "November",
         "December"
     ];
