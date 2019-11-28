@@ -47,6 +47,7 @@ h2 {
 .month {
     height: 10vh;
     display: flex;
+    align-items: center;
     background-color: palevioletred;
 }
 
@@ -65,4 +66,10 @@ h2 {
 
 ul {
     list-style-type: none;
+}
+
+i {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 24px;
 }
