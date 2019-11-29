@@ -91,3 +91,7 @@
         border: 0.01rem;
         border-style: solid;
     }
+
+    .previous_date {
+        color: rgb(118, 118, 118);
+    }
