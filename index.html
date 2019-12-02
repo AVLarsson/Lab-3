@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./todolist.css">
     <script defer src="./build/build.js"></script>
-    <script defer src="./build/addtodo.js"></script>
+    <script defer src="./addtodo/addtodo.js"></script>
 
     <!-- Fonts & icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -28,17 +28,23 @@
         <section class="todo">
             <fieldset>
                 <legend>To Do-list</legend>
-                <form>
-                    <label for="addtodo">Lägg till</label>
-                    <input type="text" name="addtodo" id="addtodo">
-                    <button type="submit" name="addtodo">Add</button>
+                <form class="formAddToDo">
+                    <label for="date">Välj datum</label>
+                    <input type="date" name="date">
+                    <label for="Add To Do">Lägg till</label>
+                    <input type="text" name="Add To Do" id="addtodo" maxlength="35">
+                    <button type="submit">Add</button>
                 </form>
-                <form>
+
+                <!-- <form>
                     <label for="addtodo">Ta bort</label>
                     <input type="text" name="removetodo" id="removetodo">
                     <button type="submit" name="removetodo">Remove</button>
-                </form>
+                </form> -->
             </fieldset>
+            <div class="alltodos">
+
+            </div>
         </section>
 
         <div class="calendar">
