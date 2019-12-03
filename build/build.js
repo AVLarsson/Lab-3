@@ -116,7 +116,7 @@ function renderTime() {
 //     let inputDate = document.querySelector()
 // }
 
-function get_todos() {
+function getToDoList() {
     var allToDos = new Array;
     var allToDos_str = localStorage.getItem('todo');
     if (allToDos_str !== null) {
@@ -130,18 +130,19 @@ function get_todos() {
 function addToDo() {
     let task = document.getElementById('addtodo').value;
     let date = document.getElementById('indate').value
-    let allToDos = get_todos();
-    allToDos.push(task + date);
+    let allToDos = getToDoList();
+    allToDos.push(task);
+    allToDos.push(date);
     localStorage.setItem('todo', JSON.stringify(allToDos));
-
-    printToDos();
+    let dates = new Date(date)
+    printToDos(dates, task);
 
     event.preventDefault();
 }
 
 function removeToDo() {
     const id = this.getAttribute('id');
-    let allToDos = get_todos();
+    let allToDos = getToDoList();
     allToDos.splice(id, 1);
     localStorage.setItem('todo', JSON.stringify(allToDos));
 
@@ -151,8 +152,8 @@ function removeToDo() {
     return false;
 }
 
-function printToDos() {
-    let allToDos = get_todos();
+function printToDos(date, task) {
+    let allToDos = getToDoList();
     
     let html = '<ul>';
     for (var i = 0; i < allToDos.length; i++) {
@@ -162,18 +163,41 @@ function printToDos() {
     
     let calendarDays = document.querySelectorAll('.days>div')
 
+for (let i = 0; i < calendarDays.length; i++) {
+    let day = calendarDays[i];
+    let dayNumber = day.innerHTML
     
-    for (let i = 0; i < calendarDays.length; i++) {
-        let element = calendarDays[i]
-        element.innerHTML += html
-        console.log(calendarDays[i]);
-    }
+
+
+
+        // console.log(day.innerHTML);
+        
+        day.innerHTML += html
+        allToDos.forEach(element => {
+            let toDoInput = new Date(allToDos[1])
+            let taskDate = toDoInput.getDate()
+            taskDate = taskDate.toString()
+           
+            
+            if (taskDate === dayNumber) {
+                console.log(dayNumber);
+                
+            }
+            
+        });
+        
+    }};
+    // for (let i = 0; i < calendarDays.length; i++) {
+    //     let element = calendarDays[i]
+    //     element.innerHTML += html
+    //     console.log(calendarDays[i]);
+    // }
 
     let buttons = document.getElementsByClassName('remove');
-    for (var i = 0; i < buttons.length; i++) {
+    for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', removeToDo);
     };
-}
+
 
 
 
