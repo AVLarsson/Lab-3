@@ -8,13 +8,18 @@ window.onload = function() {
 let date = new Date();
 
 function printDate() {
-    date.setDate(1);
+    date.setDate(7);
+    console.log(date);
+    
     let day = date.getDay();
     let today = new Date();
+
+    console.log(today);
+    
     let currentMonth = date.getMonth()
     let currentYear = date.getFullYear()
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
-
+    
 
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     const months = [
@@ -94,4 +99,4 @@ function renderTime() {
     myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
 
     setTimeout("renderTime()", 1000);
-}
+} 
