@@ -1,25 +1,28 @@
 "use strict";
 
-window.onload = function() {
+window.onload = function () {
     printDate();
     renderTime();
+    document.getElementById('submit').addEventListener('click', addToDo);
+    printToDos();
 }
+
 
 let date = new Date();
 
 function printDate() {
     date.setDate(7);
     console.log(date);
-    
+
     let day = date.getDay();
     let today = new Date();
 
     console.log(today);
-    
+
     let currentMonth = date.getMonth()
     let currentYear = date.getFullYear()
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
-    
+
 
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     const months = [
@@ -66,7 +69,7 @@ function renderTime() {
     // Date
     let myDate = new Date();
     // if (year < 1000) {
-        // year += 1900
+    // year += 1900
     // }
     let day = myDate.getDay();
     let month = myDate.getMonth();
@@ -99,4 +102,85 @@ function renderTime() {
     myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
 
     setTimeout("renderTime()", 1000);
-} 
+}
+
+// function addEventListeners() {
+//     let toDoList = [];
+//     const submitButton = document.querySelector('button');
+//     submitButton.addEventListener('click', function () {
+//         addToDo();
+//     });
+// }
+
+// function addToDo() {
+//     let inputDate = document.querySelector()
+// }
+
+function get_todos() {
+    var allToDos = new Array;
+    var allToDos_str = localStorage.getItem('todo');
+    if (allToDos_str !== null) {
+        allToDos = JSON.parse(allToDos_str);
+    }
+
+    event.preventDefault();
+    return allToDos;
+}
+
+function addToDo() {
+    let task = document.getElementById('addtodo').value;
+    let date = document.getElementById('indate').value
+    let allToDos = get_todos();
+    allToDos.push(task + date);
+    localStorage.setItem('todo', JSON.stringify(allToDos));
+
+    printToDos();
+
+    event.preventDefault();
+}
+
+function removeToDo() {
+    const id = this.getAttribute('id');
+    let allToDos = get_todos();
+    allToDos.splice(id, 1);
+    localStorage.setItem('todo', JSON.stringify(allToDos));
+
+    printToDos();
+    // event.preventDefault();
+
+    return false;
+}
+
+function printToDos() {
+    let allToDos = get_todos();
+    
+    let html = '<ul>';
+    for (var i = 0; i < allToDos.length; i++) {
+        html += '<li>' + allToDos[i] + '<button class="remove" id="' + i + '">x</button></li>';
+    };
+    html += '</ul>';
+    
+    let calendarDays = document.querySelectorAll('.days>div')
+
+    
+    for (let i = 0; i < calendarDays.length; i++) {
+        let element = calendarDays[i]
+        element.innerHTML += html
+        console.log(calendarDays[i]);
+    }
+
+    let buttons = document.getElementsByClassName('remove');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', removeToDo);
+    };
+}
+
+
+
+// for (let i = 0; i < days.length; i++) {
+//     const element = days[i];
+//     for (let i = 0; i < task.length; i++) {
+//         const element = task[i];
+
+//     }
+// }

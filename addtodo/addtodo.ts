@@ -13,7 +13,7 @@
 //  * @param {MouseEvent} event
 //  * @param {Array}
 //  */
-// function addToDo(event, list) {
+// function addToDo(event: Mouse Event, list: Array): void {
 
 //     const toDoInput = document.querySelector('#addtodo');
 //     list.push(toDoInput.value)
