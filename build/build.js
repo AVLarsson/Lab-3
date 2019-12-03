@@ -8,12 +8,18 @@ window.onload = function() {
 let date = new Date();
 
 function printDate() {
+    date.setDate(7);
+    console.log(date);
+    
     let day = date.getDay();
     let today = new Date();
+
+    console.log(today);
+    
     let currentMonth = date.getMonth()
     let currentYear = date.getFullYear()
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
-
+    
 
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     const months = [
@@ -32,9 +38,10 @@ function printDate() {
     ];
 
     document.getElementById("month").innerHTML = months[currentMonth] + " " + currentYear;
+    /*document.getElementsByClassName("date").innerHTML = date.toDateString();*/
     let cells = "";
     for (let number = day; number > 0; number--) {
-      cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
+        cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
     }
     for (let i = 1; i <= endDate; i++) {
         if (i == today.getDate() && currentMonth == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
@@ -58,6 +65,9 @@ function renderTime() {
 
     // Date
     let myDate = new Date();
+    // if (year < 1000) {
+        // year += 1900
+    // }
     let day = myDate.getDay();
     let month = myDate.getMonth();
     let daym = myDate.getDate();
@@ -89,4 +99,4 @@ function renderTime() {
     myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
 
     setTimeout("renderTime()", 1000);
-}
+} 
