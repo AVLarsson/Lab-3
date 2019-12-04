@@ -1,8 +1,8 @@
 "use strict";
 window.onload = function () {
-    printDate();
     renderTime();
     document.getElementById('add').addEventListener('click', addToDo);
+    printDate();
     printToDos();
 };
 let date = new Date();
@@ -28,25 +28,32 @@ function printDate() {
         "November",
         "December"
     ];
+
     document.getElementById("month").innerHTML = months[currentMonth] + " " + currentYear;
     /*document.getElementsByClassName("date").innerHTML = date.toDateString();*/
     let cells = "";
     for (let number = day; number > 0; number--) {
         cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
     }
+    let matches = compareDates();
+
     for (let i = 1; i <= endDate; i++) {
-        if (i == today.getDate() && currentMonth == today.getMonth())
+        let matchingDate = compare(endDate);
+        console.log('result', matchingDate, endDate);
+        if (i == today.getDate() && currentMonth == today.getMonth()) {
             cells += "<div class='today'>" + i + "<div class='savedtodo'></div></div>";
-        else
+        }
+        else {
             cells += "<div>" + i + "<div class='savedtodo'></div></div>";
+        }
+        document.getElementsByClassName("days")[0].innerHTML = cells;
     }
-    document.getElementsByClassName("days")[0].innerHTML = cells;
 }
-function moveDate(para) {
-    if (para == "previous") {
+function moveDate(button) {
+    if (button == "previous") {
         date.setMonth(date.getMonth() - 1);
     }
-    else if (para == 'next') {
+    else if (button == 'next') {
         date.setMonth(date.getMonth() + 1);
     }
     printDate();
@@ -108,7 +115,9 @@ function addToDo() {
     allToDos.push(toDo);
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printToDos();
-
+    makeToDoObject();
+    makeCalendarDateObject();
+    printDate();
     // event.preventDefault();
     return false;
 }
@@ -118,6 +127,7 @@ function removeToDo() {
     allToDos.splice(id, 1);
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printToDos();
+    printDate();
     event.preventDefault();
     return false;
 }
@@ -125,36 +135,21 @@ function removeToDo() {
  * Print to dos in calendar
  */
 function printToDos() {
-    let allToDos = getToDoList(); // Recieve to do list
-    let shownMonthYear = document.querySelector('#month') // Select month + year heading
-    let calendarDate = document.querySelectorAll('.days>div:not(.previous_date)'); // Select all dates in shown month
+    printDate();
+    let allToDos = getToDoList();           // Recieve to do list
+    let toDoList = makeToDoObject();
+    let calDate = makeCalendarDateObject();
+    let dateMatch = compareDates();
 
-    shownMonthYear = shownMonthYear.innerText;
-    shownMonthYear = shownMonthYear.toString(); // Convert month + year text
-
-    let calendarDateArr = Array.from(calendarDate); // Convert NodeList of calendar dates to array
-    let calDate = [] // to use later
-    // Needs work
-
-    for (let i = 0; i < calendarDateArr.length; i++) { // Loop through shown dates
-        let monthYear = shownMonthYear.split(' '); // Split month and year string in two, each on separate index
-        let date = calendarDateArr[i]; // Variable for each calendar date
-        const dateContent = date.innerText; // Variable for calendar date number
-
-        let dateArr = []                // Array for each date (date, month, year)
-        date = dateContent.toString();  // Convert to string
-        monthYear.unshift(date);        // Put date at first index of array, array is now "date", "month", "year"
-        monthYear.forEach(fullDate => {
-            dateArr.push(fullDate);
-        });
-        dateArr = new Date(dateArr);
-        calDate.push(dateArr);        // Push each full date to full list of calendar dates
-    }
-
-    let toDoContent = '<div class="savedtodo"><ul>'; // To Do content
+    let calendarDays = Array.from(document.querySelectorAll('.days>div'))
     let calendarDates = document.querySelectorAll('.savedtodo');
-    let key
+
+    for (let i = 0; i < dateMatch.length; i++) {
+        calendarDays[i].innerHTML = 'hej'
+        console.log(calendarDays);
+    }
     for (let i = 0; i < allToDos.length; i++) { // Loop through to dos
+        let toDoContent = '<div class="savedtodo"><ul>'; // To Do content
         let toDo = allToDos[i][1];
         toDo = new Date(toDo);
         let toDoDate = toDo.getDate() - 1;
@@ -166,27 +161,132 @@ function printToDos() {
             '</li><li>' + '<button class="remove" id="' + i + '">x</button></li>';
         toDoContent += '</ul></div';
 
-        for (key in calDate) {
-            Object.keys(calDate)[key]
-            key + 1
-            let month = Object.values(calDate)[key].getMonth() + 1;
-            if (month = toDoMonth) {
-                if (key = toDoDate) {
-                    // let here = allToDos[key][1]
-                    // parseInt(here)
-                    
-                }
-            }
-        }
-        console.log(calendarDate[toDoDate]);
-        calendarDates[toDoDate].innerHTML = toDoContent;
+        // calendarDates[toDoDate].innerHTML = toDoContent;
     }
-
-
     let removeButton = document.getElementsByClassName('remove');
     for (let i = 0; i < removeButton.length; i++) {
         removeButton[i].addEventListener('click', removeToDo);
     }
-
     event.preventDefault();
 }
+function compare(enddate) {
+    let matchingDate = compareDates();
+
+    for (let i = 0; i < enddate; i++) {
+        let match = new Date(matchingDate[i]);
+        match = match.getDate();
+        console.log(matchingDate[i], i);
+
+
+        if (match = i) {
+            console.log('if', match, i);
+            return match.getDate()
+        }
+        else {
+            i++
+            console.log('else', i);
+
+        }
+
+    }
+}
+function makeToDoObject() {
+    const allToDos = getToDoList();
+    let toDoList = {};
+    let toDoFullDate;
+
+    for (let i = 0; i < allToDos.length; i++) { // Loop through to dos
+        let toDo = allToDos[i][1];
+        const toDoText = allToDos[i][0];
+
+        toDo = new Date(toDo);
+        toDoFullDate =
+            toDo.getFullYear() + "-" +
+            (toDo.getMonth() + 1) + "-" +
+            toDo.getDate();
+        toDoList[toDoFullDate] = toDoText
+    }
+    return toDoList;
+}
+
+function makeCalendarDateObject() {
+    let calendarDates = document.querySelectorAll('.days>div:not(.previous_date)');  // Select all dates in shown month
+    let calendarDatesList = Array.from(calendarDates); // Convert NodeList of calendar dates to array
+
+    // Select month + year heading
+    let shownMonthYear = document.querySelector('#month');
+
+    shownMonthYear = shownMonthYear.innerText;
+    shownMonthYear = shownMonthYear.toString();
+
+    let calDate = {}
+    let fullDate;
+
+    for (let i = 0; i < calendarDatesList.length; i++) {                              // Loop through shown dates
+        let monthYear = shownMonthYear.split(' ');                                  // Split month and year string in two, each on separate index
+        let date = calendarDatesList[i];                                              // Variable for each calendar date
+        const dateContent = date.innerText;                                         // Variable for calendar date number
+
+        let dateArr = []                                                            // Array for each date (date, month, year)
+        date = dateContent.toString();                                              // Convert to string
+        monthYear.unshift(date);                                                    // Put date at first index of array, array is now "date", "month", "year"
+        monthYear.forEach(date => {
+            dateArr.push(date);
+        });
+        dateArr = new Date(dateArr);
+        fullDate =
+            dateArr.getFullYear() + "-" +
+            (dateArr.getMonth() + 1) + "-" +
+            dateArr.getDate();
+
+        // Push each full date to full list of calendar dates
+        calDate[fullDate] = ""
+    }
+    return calDate;
+}
+
+function compareDates() {
+    let calDate = makeCalendarDateObject();
+    let toDoList = makeToDoObject();
+    let dateMatch = []
+
+    for (let key in calDate) {
+        if (calDate.hasOwnProperty(key)) {
+            let date = new Date(key);
+            if (toDoList.hasOwnProperty(key)) {
+                key = date
+                dateMatch.push(key)
+            }
+        }
+    }
+    return dateMatch;
+}
+
+/**
+ * let matchingDate = compareDates(endDate);
+ *
+ * let match = matchingDate.getDate();
+ * for (let i = 0; i < endDate; i++) {
+       if (match = i) {
+           return match
+       }
+       else {
+           return i
+       }
+  }
+ */
+
+/**
+ * för varje DAG i KALENDER
+ * printa ut dag och
+ * OM idag - printa ut extra klass och
+ *      OM date match
+ *          printa ut todo
+ *      printa stängdiv
+ * ANNARS
+ *      printa ut div
+ *          OM date match
+ *              printa ut todo
+ *      printa ut datum o slutdiv
+ *
+ */
