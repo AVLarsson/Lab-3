@@ -50,6 +50,7 @@ function moveDate(para) {
         date.setMonth(date.getMonth() + 1);
     }
     printDate();
+    printToDos()
 }
 function renderTime() {
     // Date
@@ -93,51 +94,95 @@ function getToDoList() {
     if (toDoContent !== null) {
         allToDos = JSON.parse(toDoContent);
     }
-    // event.preventDefault();
+
+    event.preventDefault();
     return allToDos;
 }
 function addToDo() {
     let toDo = [];
     let task = document.getElementById('inputText').value;
     let date = document.getElementById('inputDate').value;
+
     let allToDos = getToDoList();
     toDo.push(task, date);
     allToDos.push(toDo);
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printToDos();
+
     // event.preventDefault();
     return false;
 }
 function removeToDo() {
-    console.log(this);
-    
     let id = this.getAttribute('id');
-    let content = this.parentNode.parentNode
-    
     let allToDos = getToDoList();
-    console.log(allToDos);
-    console.log(allToDos.parentNode);
     allToDos.splice(id, 1);
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printToDos();
     event.preventDefault();
     return false;
 }
+/**
+ * Print to dos in calendar
+ */
 function printToDos() {
-    let allToDos = getToDoList();
-    let toDoContent = '<ul>';
-    for (let i = 0; i < allToDos.length; i++) {
+    let allToDos = getToDoList(); // Recieve to do list
+    let shownMonthYear = document.querySelector('#month') // Select month + year heading
+    let calendarDate = document.querySelectorAll('.days>div:not(.previous_date)'); // Select all dates in shown month
+
+    shownMonthYear = shownMonthYear.innerText;
+    shownMonthYear = shownMonthYear.toString(); // Convert month + year text
+
+    let calendarDateArr = Array.from(calendarDate); // Convert NodeList of calendar dates to array
+    let calDate = [] // to use later
+    // Needs work
+
+    for (let i = 0; i < calendarDateArr.length; i++) { // Loop through shown dates
+        let monthYear = shownMonthYear.split(' '); // Split month and year string in two, each on separate index
+        let date = calendarDateArr[i]; // Variable for each calendar date
+        const dateContent = date.innerText; // Variable for calendar date number
+
+        let dateArr = []                // Array for each date (date, month, year)
+        date = dateContent.toString();  // Convert to string
+        monthYear.unshift(date);        // Put date at first index of array, array is now "date", "month", "year"
+        monthYear.forEach(fullDate => {
+            dateArr.push(fullDate);
+        });
+        dateArr = new Date(dateArr);
+        calDate.push(dateArr);        // Push each full date to full list of calendar dates
+    }
+
+    let toDoContent = '<div class="savedtodo"><ul>'; // To Do content
+    let calendarDates = document.querySelectorAll('.savedtodo');
+    let key
+    for (let i = 0; i < allToDos.length; i++) { // Loop through to dos
+        let toDo = allToDos[i][1];
+        toDo = new Date(toDo);
+        let toDoDate = toDo.getDate() - 1;
+        let toDoMonth = toDo.getMonth() + 1;
+
         toDoContent +=
             '<li id="' + i + '">' + allToDos[i][0] +
-                '</li><li>' + allToDos[i][1] +
-                '</li><li>' + '<button class="remove" id="' + i + '">x</button></li>';
+            '</li><li>' + allToDos[i][1] +
+            '</li><li>' + '<button class="remove" id="' + i + '">x</button></li>';
+        toDoContent += '</ul></div';
+
+        for (key in calDate) {
+            Object.keys(calDate)[key]
+            key + 1
+            let month = Object.values(calDate)[key].getMonth() + 1;
+            if (month = toDoMonth) {
+                if (key = toDoDate) {
+                    // let here = allToDos[key][1]
+                    // parseInt(here)
+                    
+                }
+            }
+        }
+        console.log(calendarDate[toDoDate]);
+        calendarDates[toDoDate].innerHTML = toDoContent;
     }
-    toDoContent += '</ul>';
-    let calendarDates = document.querySelectorAll('.savedtodo');
-    for (let i = 0; i < calendarDates.length; i++) {
-        let dayDate = calendarDates[i];
-        dayDate.innerHTML = toDoContent;
-    }
+
+
     let removeButton = document.getElementsByClassName('remove');
     for (let i = 0; i < removeButton.length; i++) {
         removeButton[i].addEventListener('click', removeToDo);
