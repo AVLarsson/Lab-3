@@ -90,8 +90,29 @@
         grid-template-columns: repeat(7, 1fr);
         border: 0.01rem;
         border-style: solid;
+        font-size: .75rem;
+    }
+
+    .savedtodo {
+        display: flex;
+        align-items: center;
+    }
+
+    .remove {
+        height: 1.2rem;
+        width: 1.2rem;
+        border-radius: 50% 50% 50% 50%;
+        align-self: center;
+        text-transform: uppercase;
+        color: white;
+        background: red;
+        border: .2rem solid red;
     }
 
     .previous_date {
         color: grey;
+    }
+
+    .red {
+        color: red;
     }
