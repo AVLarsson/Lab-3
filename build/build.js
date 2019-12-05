@@ -1,11 +1,12 @@
 "use strict";
-window.onload = function () {
+window.onload = function() {
     printDate();
     renderTime();
     document.getElementById('add').addEventListener('click', addToDo);
-    // printToDos();
+
 };
 let date = new Date();
+
 function printDate() {
     date.setDate(7);
     let day = date.getDay();
@@ -40,8 +41,7 @@ function printDate() {
         console.log(dayContent);
         if (i == today.getDate() && currentMonth == today.getMonth()) {
             cells += "<div class='today'>" + dayContent + "</div>";
-        }
-        else {
+        } else {
             cells += "<div>" + dayContent + "</div>";
         }
         document.getElementsByClassName("days")[0].innerHTML = cells;
@@ -81,13 +81,11 @@ function dayNumber(calDate, calMonth, calYear) {
                     
                         }
                 }
-            }
-            else {
+            } else {
                 dateContent = calDate
             }
         })
-    }
-    else if (!allToDos.length) {
+    } else if (!allToDos.length) {
         dateContent = calDate
 
     }
@@ -97,12 +95,12 @@ function dayNumber(calDate, calMonth, calYear) {
 function moveDate(button) {
     if (button == "previous") {
         date.setMonth(date.getMonth() - 1);
-    }
-    else if (button == 'next') {
+    } else if (button == 'next') {
         date.setMonth(date.getMonth() + 1);
     }
     printDate();
 }
+
 function renderTime() {
     // Date
     let myDate = new Date();
@@ -121,8 +119,7 @@ function renderTime() {
     let s = currentTime.getSeconds();
     if (h === 24) {
         h = 0;
-    }
-    else if (h > 12) {
+    } else if (h > 12) {
         h = h - 0;
     }
     if (h < 10) {
@@ -139,6 +136,7 @@ function renderTime() {
     myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
     setTimeout("renderTime()", 1000);
 }
+
 function getToDoList() {
     let allToDos = [];
     let toDoContent = localStorage.getItem('todo');
@@ -149,6 +147,7 @@ function getToDoList() {
     event.preventDefault();
     return allToDos;
 }
+
 function addToDo() {
     let toDo = [];
     let task = document.getElementById('inputText').value;
@@ -162,6 +161,7 @@ function addToDo() {
     
     return false;
 }
+
 function removeToDo() {
     let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
@@ -171,4 +171,13 @@ function removeToDo() {
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
     return false;
+}
+
+function myFunction() {
+    let x = document.getElementById("showCalendar");
+    if (x.classList.contains("showCalendar")) {
+        x.classList.remove("showCalendar")
+    } else {
+        x.classList.add("showCalendar")
+    }
 }
