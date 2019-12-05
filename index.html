@@ -35,46 +35,35 @@
                     <input type="text" name="Add To Do" id="inputText" maxlength="35">
                     <button id="add" type="submit">Add</button>
                 </form>
-
-                <!-- <form>
-                    <label for="addtodo">Ta bort</label>
-                    <input type="text" name="removetodo" id="removetodo">
-                    <button type="submit" name="removetodo">Remove</button>
-                </form> -->
-
             </fieldset>
             <div class="alltodos">
-
             </div>
         </section>
-        <button class="buttonCalendar" onclick="myFunction()">Click Me</button>
-        <div id="showCalendar" class="displayGrid showCalendar">
 
-            <div class="calendar">
-                <div class="month">
-                    <div class="previous" onclick="moveDate('previous')">
-                        <i class="fas fa-angle-left"></i>
+        <div class="calendar">
+            <div class="month">
+                <div class="previous" onclick="moveDate('previous')">
+                    <i class="fas fa-angle-left"></i>
 
-                    </div>
-                    <div>
-                        <h2 id="month"></h2>
-                    </div>
-                    <div class="next" onclick="moveDate('next')">
-                        <i class="fas fa-angle-right"></i>
-
-                    </div>
                 </div>
-                <ul class="weekdays">
-                    <li>Måndag</li>
-                    <li>Tisdag</li>
-                    <li>Onsdag</li>
-                    <li>Torsdag</li>
-                    <li>Fredag</li>
-                    <li>Lördag</li>
-                    <li>Söndag</li>
-                </ul>
-                <div class="days">
+                <div>
+                    <h2 id="month"></h2>
                 </div>
+                <div class="next" onclick="moveDate('next')">
+                    <i class="fas fa-angle-right"></i>
+
+                </div>
+            </div>
+            <ul class="weekdays">
+                <li>Måndag</li>
+                <li>Tisdag</li>
+                <li>Onsdag</li>
+                <li>Torsdag</li>
+                <li>Fredag</li>
+                <li>Lördag</li>
+                <li>Söndag</li>
+            </ul>
+            <div class="days">
             </div>
         </div>
     </div>
