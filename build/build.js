@@ -32,35 +32,29 @@ function printDate() {
     /*document.getElementsByClassName("date").innerHTML = date.toDateString();*/
 
     let cells = "";
-    let toDos = getToDoList()
-    toDos.forEach(toDo => {
-        let date = new Date(toDo[1]);
-    });
-
     for (let number = day; number > 0; number--) {
         cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
     }
     for (let i = 1; i <= endDate; i++) {
-        let dayContent = dayNumber(i, currentMonth, currentYear)
-
+        let dayContent = dayNumber(i, currentMonth, currentYear);
+        console.log(dayContent);
         if (i == today.getDate() && currentMonth == today.getMonth()) {
             cells += "<div class='today'>" + dayContent + "</div>";
         }
         else {
             cells += "<div>" + dayContent + "</div>";
         }
-    }
-
-    document.getElementsByClassName("days")[0].innerHTML = cells;
-    let removeButton = document.getElementsByClassName('remove');
-    for (let i = 0; i < removeButton.length; i++) {
-        removeButton[i].addEventListener('click', removeToDo);
+        document.getElementsByClassName("days")[0].innerHTML = cells;
+        let removeButton = document.getElementsByClassName('remove');
+        for (let i = 0; i < removeButton.length; i++) {
+            removeButton[i].addEventListener('click', removeToDo);
+        }
     }
 }
 
 function dayNumber(calDate, calMonth, calYear) {
     let allToDos = getToDoList();
-    let dateContent;
+    let dateContent = calDate;
     calMonth = calMonth + 1;
 
     if (allToDos.length) {
@@ -72,17 +66,20 @@ function dayNumber(calDate, calMonth, calYear) {
             let toDoMonth = newDate.getMonth();
             toDoMonth += 1
             let toDoYear = newDate.getFullYear();
-            if (toDoYear == calYear) {
-                if (toDoMonth == calMonth) {
-                    if (toDoDate == calDate) {
+            if (calYear = toDoYear) {
+                if (calMonth === toDoMonth) {
+                    if (calDate === toDoDate) {
                         for (let i = 0; i < allToDos.length; i++) {
                             dateContent =
                                 toDoDate +
                                 "<div class='savedtodo'>" +
                                 toDoContent +
-                                "<button class='remove' id=" + i + ">x</button></div>"
+                                "<button class='remove' id='"
+                            }
+                            dateContent += allToDos.indexOf(toDo) + "'>x</button></div>"
+                    console.log(dateContent);
+                    
                         }
-                    }
                 }
             }
             else {
@@ -162,13 +159,14 @@ function addToDo() {
     allToDos.push(toDo);
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
-
+    
     return false;
 }
 function removeToDo() {
-    let id = this.getAttribute('id');
+    let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
     allToDos.splice(id, 1);
+    console.log(id);
 
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
