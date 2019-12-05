@@ -1,21 +1,29 @@
 "use strict";
-window.onload = function() {
+
+window.onload = function () {
     printDate();
     renderTime();
-    document.getElementById('add').addEventListener('click', addToDo);
 
-};
+    document.getElementById('add').addEventListener('click', addToDo);
+    printToDos();
+}
+
+
 let date = new Date();
 
 function printDate() {
     date.setDate(7);
+
     let day = date.getDay();
     let today = new Date();
-    let currentMonth = date.getMonth();
-    let currentYear = date.getFullYear();
+
+    let currentMonth = date.getMonth()
+    let currentYear = date.getFullYear()
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
-    let months = [
+    const months = [
         "January",
         "February",
         "March",
@@ -29,82 +37,33 @@ function printDate() {
         "November",
         "December"
     ];
+
     document.getElementById("month").innerHTML = months[currentMonth] + " " + currentYear;
     /*document.getElementsByClassName("date").innerHTML = date.toDateString();*/
-
     let cells = "";
-    let toDos = getToDoList()
-    toDos.forEach(toDo => {
-        let date = new Date(toDo[1]);
-    });
-
     for (let number = day; number > 0; number--) {
         cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
     }
     for (let i = 1; i <= endDate; i++) {
-        let dayContent = dayNumber(i, currentMonth, currentYear)
-
-        if (i == today.getDate() && currentMonth == today.getMonth()) {
-            cells += "<div class='today'>" + dayContent + "</div>";
-        } else {
-            cells += "<div>" + dayContent + "</div>";
-        }
+        if (i == today.getDate() && currentMonth == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
+        else
+            cells += "<div>" + i + "</div>";
     }
-
     document.getElementsByClassName("days")[0].innerHTML = cells;
-    let removeButton = document.getElementsByClassName('remove');
-    for (let i = 0; i < removeButton.length; i++) {
-        removeButton[i].addEventListener('click', removeToDo);
-    }
+
 }
 
-function dayNumber(calDate, calMonth, calYear) {
-    let allToDos = getToDoList();
-    let dateContent = calDate;
-    calMonth = calMonth + 1;
-
-    if (allToDos.length) {
-        allToDos.forEach(toDo => {
-            let newDate = new Date(toDo[1]);
-            let toDoContent = toDo[0];
-
-            let toDoDate = newDate.getDate();
-            let toDoMonth = newDate.getMonth();
-            toDoMonth += 1
-            let toDoYear = newDate.getFullYear();
-            if (toDoYear == calYear) {
-                if (toDoMonth == calMonth) {
-                    if (toDoDate == calDate) {
-                        for (let i = 0; i < allToDos.length; i++) {
-                            dateContent =
-                                toDoDate +
-                                "<div class='savedtodo'>" +
-                                toDoContent +
-                                "<button class='remove' id=" + i + ">x</button></div>"
-                        }
-                    }
-                }
-            } else {
-                dateContent = calDate
-            }
-        })
-    } else if (!allToDos.length) {
-        dateContent = calDate
-
-    }
-    return dateContent;
-}
-
-function moveDate(button) {
-    if (button == "previous") {
+function moveDate(para) {
+    if (para == "previous") {
         date.setMonth(date.getMonth() - 1);
-    } else if (button == 'next') {
+    } else if (para == 'next') {
         date.setMonth(date.getMonth() + 1);
     }
     printDate();
 }
 
 function renderTime() {
+
     // Date
     let myDate = new Date();
     // if (year < 1000) {
@@ -115,6 +74,7 @@ function renderTime() {
     let daym = myDate.getDate();
     let dayArray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
     let montArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+
     // Time
     let currentTime = new Date();
     let h = currentTime.getHours();
@@ -134,52 +94,100 @@ function renderTime() {
     if (s < 10) {
         s = "0" + s;
     }
+
     let myClock = document.getElementById("clockDisplay");
     myClock.textContent = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
     myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
+
     setTimeout("renderTime()", 1000);
 }
 
-function getToDoList() {
-    let allToDos = [];
+function getToDoList(): String[] {
+    let allToDos: Array<String> = []
     let toDoContent = localStorage.getItem('todo');
     if (toDoContent !== null) {
         allToDos = JSON.parse(toDoContent);
     }
 
     event.preventDefault();
+
     return allToDos;
 }
 
 function addToDo() {
-    let toDo = [];
+    let toDo: String[]
     let task = document.getElementById('inputText').value;
     let date = document.getElementById('inputDate').value;
-
+    
     let allToDos = getToDoList();
     toDo.push(task, date);
-    allToDos.push(toDo);
+    allToDos.push(toDo.toString());
     localStorage.setItem('todo', JSON.stringify(allToDos));
-    printDate();
+
+    printToDos();
+
+    event.preventDefault();
 
     return false;
 }
 
-function removeToDo() {
-    let id = this.getAttribute('id');
+function removeToDo(): boolean {
+    let id: Number = this.getAttribute('id');
+    this.parentNode
+    console.log(this.parentNode.parentNode);
+
     let allToDos = getToDoList();
-    allToDos.splice(id, 1);
-
+    allToDos.splice(id, 0);
     localStorage.setItem('todo', JSON.stringify(allToDos));
-    printDate();
+
+    printToDos();
+
+    event.preventDefault();
+
     return false;
 }
 
-function myFunction() {
-    let x = document.getElementById("showCalendar");
-    if (x.classList.contains("showCalendar")) {
-        x.classList.remove("showCalendar")
-    } else {
-        x.classList.add("showCalendar")
+function printToDos() {
+    let allToDos = getToDoList();
+
+    let toDoContent: String = '<ul>';
+    for (let i = 0; i < allToDos.length; i++) {
+        toDoContent += 
+        '<li>' + allToDos[i][0] + 
+        '</li><li>' + allToDos[i][1] + 
+        '</li><li>' + '<button class="remove" id="' + i + '">x</button></li>';
     }
+    toDoContent += '</ul>';
+
+    let calendarDates = document.querySelectorAll('.days>div');
+    for (let i = 0; i < calendarDates.length; i++) {
+        let dayDate = calendarDates[i];
+        dayDate.innerHTML = toDoContent
+    }
+
+    let removeButton = document.getElementsByClassName('remove');
+    for (let i = 0; i < removeButton.length; i++) {
+        removeButton[i].addEventListener('click', removeToDo);
+    };
+
+    // for (let i = 0; i < calendarDays.length; i++) {
+    //     let day = calendarDays[i];
+    //     let dayNumber = day.innerHTML
+
+    //     // console.log(day.innerHTML);
+
+    //     day.innerHTML += html
+    //     allToDos.forEach(element => {
+    //         let toDoInput = new Date(allToDos[1])
+    //         let taskDate = toDoInput.getDate()
+    //         taskDate = taskDate.toString()
+
+
+    //         if (taskDate === dayNumber) {
+    //             console.log(dayNumber);
+    //         }
+
+    //     });
+    // };
+    event.preventDefault();
 }
