@@ -41,7 +41,7 @@ function printDate() {
         cells += "<div class='previous_date'>" + (previousDate - number + 1) + "</div>";
     }
     for (let i = 1; i <= endDate; i++) {
-        let dayContent = getTheDate(i)
+        let dayContent = dayNumber(i, currentMonth, currentYear)
 
         if (i == today.getDate() && currentMonth == today.getMonth()) {
             cells += "<div class='today'>" + dayContent + "</div>";
@@ -58,36 +58,41 @@ function printDate() {
     }
 }
 
-function getTheDate(calDate) {
+function dayNumber(calDate, calMonth, calYear) {
     let allToDos = getToDoList();
     let dateContent;
+    calMonth = calMonth + 1;
 
     if (allToDos.length) {
         allToDos.forEach(toDo => {
             let newDate = new Date(toDo[1]);
             let toDoContent = toDo[0];
 
-            let toDoDate
-            toDoDate = newDate.getDate();
-
-            if (toDoDate == calDate) {
-
-                for (let i = 0; i < allToDos.length; i++) {
-
-                    dateContent =
-                        toDoDate +
-                        "<div class='savedtodo'>" +
-                        toDoContent +
-                        "<button class='remove' id=" + i + ">x</button></div>"
+            let toDoDate = newDate.getDate();
+            let toDoMonth = newDate.getMonth();
+            toDoMonth += 1
+            let toDoYear = newDate.getFullYear();
+            if (toDoYear == calYear) {
+                if (toDoMonth == calMonth) {
+                    if (toDoDate == calDate) {
+                        for (let i = 0; i < allToDos.length; i++) {
+                            dateContent =
+                                toDoDate +
+                                "<div class='savedtodo'>" +
+                                toDoContent +
+                                "<button class='remove' id=" + i + ">x</button></div>"
+                        }
+                    }
                 }
-            } else {
+            }
+            else {
                 dateContent = calDate
             }
         })
     }
     else if (!allToDos.length) {
         dateContent = calDate
-        
+
     }
     return dateContent;
 }
@@ -100,7 +105,6 @@ function moveDate(button) {
         date.setMonth(date.getMonth() + 1);
     }
     printDate();
-    // printToDos()
 }
 function renderTime() {
     // Date
@@ -157,18 +161,15 @@ function addToDo() {
     toDo.push(task, date);
     allToDos.push(toDo);
     localStorage.setItem('todo', JSON.stringify(allToDos));
-    printDate()
+    printDate();
 
-    // event.preventDefault();
     return false;
 }
-function removeToDo(event) {
-    console.log('hej');
+function removeToDo() {
     let id = this.getAttribute('id');
-    console.log(id);
-
     let allToDos = getToDoList();
-    allToDos.splice(id);
+    allToDos.splice(id, 1);
+
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
     return false;
