@@ -8,8 +8,8 @@
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./todolist.css">
-    <script defer src="./build/build.js"></script>
-    <!-- <script defer src="./addtodo/addtodo.js"></script> -->
+    <script defer src="./js/build.js"></script>
+    <script defer src="./js/clock.js"></script>
 
     <!-- Fonts & icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -30,22 +30,13 @@
                 <legend>To Do-list</legend>
                 <form class="formAddToDo">
                     <label for="date">Välj datum</label>
-                    <input type="date" name="date" id="inputDate">
+                    <input type="date" name="date" id="inputDate" required>
                     <label for="Add To Do">Lägg till</label>
-                    <input type="text" name="Add To Do" id="inputText" maxlength="35">
+                    <input type="text" name="Add To Do" id="inputText" maxlength="35" required>
                     <button id="add" type="submit">Add</button>
                 </form>
-
-                <!-- <form>
-                    <label for="addtodo">Ta bort</label>
-                    <input type="text" name="removetodo" id="removetodo">
-                    <button type="submit" name="removetodo">Remove</button>
-                </form> -->
-
             </fieldset>
-            <div class="alltodos">
-
-            </div>
+            <div class="alltodos"></div>
         </section>
         <button class="buttonCalendar" onclick="myFunction()">Click Me</button>
         <div id="showCalendar" class="displayGrid showCalendar">
