@@ -1,32 +1,20 @@
 * {
     margin: 0;
     padding: 0;
-}
+ }
 
 html,
 body {
     font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
-    max-width: 100vw;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#showCalendar {
-    margin-top: -5rem;
-    flex-grow: 1;
-    left: 0px;
-    top: 0;
+    min-height: auto;
+    width: 100vw;
+    
 }
 
 .container {
     display: grid;
-    height: 1rem;
-    grid-template-columns: 1fr 1fr;
-} 
+    grid-template: 'clock header' 'todo calendar';
+}
 
 .clockContainer {
     grid-area: clock;
@@ -40,33 +28,47 @@ header {
     justify-content: center;
     align-items: center;
     display: none;
+    width: 19rem;
 }
 
 h2 {
     font-size: 2rem;
 }
 
+.todo {
+    display: grid;
+    grid-area: todo;
+   
+}
+
 fieldset {
     width: 19rem;
     height: 19rem;
-    /* position: fixed; */
+    display: grid;
+    position: fixed;
     justify-content: center;
     top: 10%;
     left: 0%;
+    background-color: rgb(223, 223, 223);
 }
 
 .calendar {
-    display: flex;
-    flex-direction: column;
+position: absolute;
+z-index: 0;
+display: grid;
+left: 0px;
+top: 500px;
+
 }
 
 .month {
-    height: 10vh;
+    height: 18vh;
     display: flex;
     align-items: center;
-    background-color: rgb(158, 218, 240);
+    background-color: #2634d3;
     border: 0.01rem;
     border-style: solid;
+    width: 19rem;
 }
 
 .weekdays {
@@ -75,6 +77,7 @@ fieldset {
     grid-template-columns: repeat(7, 1fr);
     border: 0.01rem;
     border-style: solid;
+    width: 19rem;
 }
 
 ul {
@@ -89,16 +92,17 @@ li {
 i {
     margin-left: 1rem;
     margin-right: 1rem;
-    font-size: 24px;
+    
 }
 
 .days>div {
     border: 0.01em;
     border-style: groove;
     border-color: rgb(118, 118, 118);
-    padding: 1rem;
-    /* display: grid; */
-    /* grid-auto-columns: inherit; */
+    padding: 14px;
+    display: grid;
+    grid-auto-columns: inherit;
+    
 }
 
 .days {
@@ -109,12 +113,12 @@ i {
     grid-template-columns: repeat(7, 1fr);
     border: 0.01rem;
     border-style: solid;
-    font-size: .75rem;
+    font-size: 12px;
+    width: 19rem;
 }
 
 .savedtodo {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -142,14 +146,9 @@ i {
 }
 
 .buttonCalendar {
-    /* display: grid; */
-    /* position: fixed; */
+    display: grid;
+    position: fixed;
     top: 25rem;
     left: 7.6rem;
 }
 
-.displayGrid {
-    /* position: fixed; */
-    top: 33rem;
-    left: 5rem;
-}
