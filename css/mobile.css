@@ -76,6 +76,7 @@ fieldset {
     border: 0.01rem;
     border-style: solid;
     width: 19rem;
+    font-size: xx-small;
 }
 
 ul {
