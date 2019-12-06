@@ -11,8 +11,8 @@ form {
     flex-flow: column wrap;
 }
 
-input, 
-label, 
+input,
+label,
 button {
     margin: .25rem .5rem;
 }
