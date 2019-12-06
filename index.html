@@ -8,8 +8,8 @@
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./todolist.css">
-    <script defer src="./build/build.js"></script>
-    <!-- <script defer src="./addtodo/addtodo.js"></script> -->
+    <script defer src="./js/build.js"></script>
+    <script defer src="./js/clock.js"></script>
 
     <!-- Fonts & icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -30,40 +30,42 @@
                 <legend>To Do-list</legend>
                 <form class="formAddToDo">
                     <label for="date">Välj datum</label>
-                    <input type="date" name="date" id="inputDate">
+                    <input type="date" name="date" id="inputDate" required>
                     <label for="Add To Do">Lägg till</label>
-                    <input type="text" name="Add To Do" id="inputText" maxlength="35">
+                    <input type="text" name="Add To Do" id="inputText" maxlength="35" required>
                     <button id="add" type="submit">Add</button>
                 </form>
             </fieldset>
-            <div class="alltodos">
-            </div>
+            <div class="alltodos"></div>
         </section>
+        <button class="buttonCalendar" onclick="myFunction()">Click Me</button>
+        <div id="showCalendar" class="displayGrid showCalendar">
 
-        <div class="calendar">
-            <div class="month">
-                <div class="previous" onclick="moveDate('previous')">
-                    <i class="fas fa-angle-left"></i>
+            <div class="calendar">
+                <div class="month">
+                    <div class="previous" onclick="moveDate('previous')">
+                        <i class="fas fa-angle-left"></i>
 
-                </div>
-                <div>
-                    <h2 id="month"></h2>
-                </div>
-                <div class="next" onclick="moveDate('next')">
-                    <i class="fas fa-angle-right"></i>
+                    </div>
+                    <div>
+                        <h2 id="month"></h2>
+                    </div>
+                    <div class="next" onclick="moveDate('next')">
+                        <i class="fas fa-angle-right"></i>
 
+                    </div>
                 </div>
-            </div>
-            <ul class="weekdays">
-                <li>Måndag</li>
-                <li>Tisdag</li>
-                <li>Onsdag</li>
-                <li>Torsdag</li>
-                <li>Fredag</li>
-                <li>Lördag</li>
-                <li>Söndag</li>
-            </ul>
-            <div class="days">
+                <ul class="weekdays">
+                    <li>Måndag</li>
+                    <li>Tisdag</li>
+                    <li>Onsdag</li>
+                    <li>Torsdag</li>
+                    <li>Fredag</li>
+                    <li>Lördag</li>
+                    <li>Söndag</li>
+                </ul>
+                <div class="days">
+                </div>
             </div>
         </div>
     </div>
