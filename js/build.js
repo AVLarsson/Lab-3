@@ -1,5 +1,3 @@
-"use strict";
-
 /* On load, print days, show clock and add event listener to add button */
 window.addEventListener('load', () => {
     printDate();
@@ -178,7 +176,6 @@ function removeToDo() {
     let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
     allToDos.splice(id, 1);
-    console.log(localStorage);
     
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
@@ -228,7 +225,7 @@ function addRemoveButtons() {
 /**
  * (skriv vad den gör här, t ex Show calendar)
  */
-function myFunction() {
+function showCalendar() {
     let x = document.getElementById("showCalendar");
     if (x.classList.contains("showCalendar")) {
         x.classList.remove("showCalendar");
