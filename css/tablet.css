@@ -68,6 +68,13 @@
         display: grid;
         position: fixed;
         top: 15.1rem;
-        left: 22rem;
+        left: 15rem;
+    }
+    
+    #add {
+        display: grid;
+        position: fixed;
+        top: 13.5rem;
+        left: 15rem;
     }
 }

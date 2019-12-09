@@ -151,5 +151,12 @@ i {
     display: grid;
     position: fixed;
     top: 15.1rem;
-    left: 7.6rem;
+    left: 0.6rem;
+}
+
+#add {
+    display: grid;
+    position: fixed;
+    top: 13.5rem;
+    left: 0.6rem;
 }
