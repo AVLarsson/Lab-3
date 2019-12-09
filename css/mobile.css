@@ -42,7 +42,7 @@ h2 {
 
 fieldset {
     width: 19rem;
-    height: 19rem;
+    min-height: 19rem;
     display: grid;
     position: fixed;
     justify-content: center;
@@ -57,6 +57,10 @@ fieldset {
     display: grid;
     left: 0px;
     top: 500px;
+<<<<<<<< HEAD:css/mobile.css
+    padding-left: 0.5rem;
+========
+>>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }
 
 .month {
@@ -66,7 +70,7 @@ fieldset {
     background-color: #2634d3;
     border: 0.01rem;
     border-style: solid;
-    width: 19rem;
+    width: 19.2rem;
 }
 
 .weekdays {
@@ -75,7 +79,7 @@ fieldset {
     grid-template-columns: repeat(7, 1fr);
     border: 0.01rem;
     border-style: solid;
-    width: 19rem;
+    width: 19.2rem;
     font-size: xx-small;
 }
 
@@ -100,6 +104,12 @@ i {
     padding: 14px;
     display: grid;
     grid-auto-columns: inherit;
+<<<<<<<< HEAD:css/mobile.css
+    max-width: 0.9.8rem;
+    max-height: 6px;
+    overflow: scroll;
+========
+>>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }
 
 .days {
@@ -110,8 +120,9 @@ i {
     grid-template-columns: repeat(7, 1fr);
     border: 0.01rem;
     border-style: solid;
-    font-size: 12px;
-    width: 19rem;
+    font-size: 7px;
+    max-width: 19.2rem;
+    overflow: scroll;
 }
 
 .savedtodo {
@@ -120,14 +131,14 @@ i {
 }
 
 .remove {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1rem;
+    width: 1rem;
     border-radius: 50% 50% 50% 50%;
     align-self: center;
     text-transform: uppercase;
     color: rgb(237, 44, 44);
     background: red;
-    border: .2rem solid red;
+    border: 0.2rem solid red;
 }
 
 .previous_date {
@@ -145,6 +156,18 @@ i {
 .buttonCalendar {
     display: grid;
     position: fixed;
+<<<<<<<< HEAD:css/mobile.css
+    top: 15.1rem;
+    left: 0.6rem;
+}
+
+#add {
+    display: grid;
+    position: fixed;
+    top: 13.5rem;
+    left: 0.6rem;
+========
     top: 25rem;
     left: 7.6rem;
+>>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }
