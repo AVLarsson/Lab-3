@@ -1,5 +1,3 @@
-"use strict";
-
 /* On load, print days, show clock and add event listener to add button */
 window.addEventListener('load', () => {
     printDate();
@@ -51,10 +49,6 @@ function printDate() {
             cells += "<div>" + dayContent + "</div>";
         }
         document.getElementsByClassName('days')[0].innerHTML = cells;
-        let removeButton = document.getElementsByClassName('remove');
-        for (let iTwo = 0; iTwo < removeButton.length; iTwo++) {
-            removeButton[iTwo].addEventListener('click', removeToDo);
-        }
     }
 }
 
@@ -83,14 +77,10 @@ function dayNumber(calDate, calMonth, calYear) {
                     if (calDate === toDoDate) {
 
                         // Create HTML element, add content and remove button
-                        let removeButton = document.createElement('button')
-                        removeButton.classList.add('remove');
-                        removeButton.setAttribute('id', allToDos.indexOf(toDo));
-                        removeButton.innerHTML = 'x';
+
                         let div = document.createElement('div');
                         div.classList.add('savedtodo');
                         div.innerHTML = toDo[0];
-                        div.appendChild(removeButton);
                         dateContent.push(div.outerHTML)
                         dateContent.join(" ");
                     }
@@ -186,33 +176,61 @@ function removeToDo() {
     let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
     allToDos.splice(id, 1);
+    
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
     return false;
 }
 
+/**
+ * Print to do list
+ * @returns addRemoveButtons - prevent page reload and fire addRemoveButtons function.
+ */
 function printToDos() {
     let allToDos = getToDoList();
     let listElement = document.querySelector('.alltodos');
     let ul = document.createElement('ul');
+    
     allToDos.forEach(function (toDo) {
+        let removeButton = document.createElement('button');
+        removeButton.classList.add('remove');
+        removeButton.setAttribute('id', allToDos.indexOf(toDo));
+        removeButton.innerHTML = 'x';
+
         let li = document.createElement('li');
-        li.append(toDo[1] + ": " + toDo[0])
+        li.append(toDo[1] + ": " + toDo[0]);
+        li.appendChild(removeButton);
         ul.append(li);
+        
     });
     listElement.innerHTML = "";
     listElement.append(ul);
+
+    event.preventDefault();
+    return addRemoveButtons();
 }
 
 /**
- * Show/ remove calendar
+ * Adds remove button for each to do in to do list.
  */
+function addRemoveButtons() {
+    let removeButton = document.getElementsByClassName('remove');
+    for (let iTwo = 0; iTwo < removeButton.length; iTwo++) {
+        removeButton[iTwo].addEventListener('click', removeToDo);
+    }
+    event.preventDefault();
+    return false;
+} 
+
+
+ /** Show/remove calendar */
 function myCalendar() {
     let cal = document.getElementById("showCalendar");
     if (cal.classList.contains("showCalendar")) {
-        cal.classList.remove("showCalendar");
     }
     else {
         cal.classList.add("showCalendar");
     }
+
+    event.preventDefault();
 }
