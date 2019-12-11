@@ -156,7 +156,6 @@ i {
 .buttonCalendar {
     display: grid;
     position: fixed;
-<<<<<<<< HEAD:css/mobile.css
     top: 15.1rem;
     left: 0.6rem;
 }
@@ -166,8 +165,6 @@ i {
     position: fixed;
     top: 13.5rem;
     left: 0.6rem;
-========
     top: 25rem;
     left: 7.6rem;
->>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }

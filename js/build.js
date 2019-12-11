@@ -227,6 +227,7 @@ function addRemoveButtons() {
 function myCalendar() {
     let cal = document.getElementById("showCalendar");
     if (cal.classList.contains("showCalendar")) {
+        cal.classList.remove("showCalendar");
     }
     else {
         cal.classList.add("showCalendar");

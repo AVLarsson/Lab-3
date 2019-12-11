@@ -56,6 +56,7 @@ fieldset {
     position: absolute;
     z-index: 0;
     display: grid;
+    flex-direction: column;
     left: 0px;
     top: 500px;
 }
