@@ -222,16 +222,14 @@ function addRemoveButtons() {
     return false;
 } 
 
-/**
- * (skriv vad den gör här, t ex Show calendar)
- */
-function showCalendar() {
-    let x = document.getElementById("showCalendar");
-    if (x.classList.contains("showCalendar")) {
-        x.classList.remove("showCalendar");
+
+ /** Show/remove calendar */
+function myCalendar() {
+    let cal = document.getElementById("showCalendar");
+    if (cal.classList.contains("showCalendar")) {
     }
     else {
-        x.classList.add("showCalendar");
+        cal.classList.add("showCalendar");
     }
 
     event.preventDefault();
