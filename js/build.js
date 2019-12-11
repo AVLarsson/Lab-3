@@ -205,14 +205,14 @@ function printToDos() {
 }
 
 /**
- * (skriv vad den gör här, t ex Show calendar)
+ * Show/ remove calendar
  */
-function myFunction() {
-    let x = document.getElementById("showCalendar");
-    if (x.classList.contains("showCalendar")) {
-        x.classList.remove("showCalendar");
+function myCalendar() {
+    let cal = document.getElementById("showCalendar");
+    if (cal.classList.contains("showCalendar")) {
+        cal.classList.remove("showCalendar");
     }
     else {
-        x.classList.add("showCalendar");
+        cal.classList.add("showCalendar");
     }
 }
