@@ -5,7 +5,7 @@ function renderTime() {
     let day = myDate.getDay();
     let month = myDate.getMonth();
     let daym = myDate.getDate();
-    let dayArray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+    let dayArray = new Array("Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag");
     let montArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
     // Time
     let currentTime = new Date();
