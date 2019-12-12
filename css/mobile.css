@@ -57,10 +57,7 @@ fieldset {
     display: grid;
     left: 0px;
     top: 500px;
-<<<<<<<< HEAD:css/mobile.css
     padding-left: 0.5rem;
-========
->>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }
 
 .month {
@@ -104,12 +101,9 @@ i {
     padding: 14px;
     display: grid;
     grid-auto-columns: inherit;
-<<<<<<<< HEAD:css/mobile.css
     max-width: 0.9.8rem;
     max-height: 6px;
     overflow: scroll;
-========
->>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
 }
 
 .days {
@@ -156,7 +150,6 @@ i {
 .buttonCalendar {
     display: grid;
     position: fixed;
-<<<<<<<< HEAD:css/mobile.css
     top: 15.1rem;
     left: 0.6rem;
 }
@@ -166,11 +159,4 @@ i {
     position: fixed;
     top: 13.5rem;
     left: 0.6rem;
-<<<<<<< HEAD
-========
-    top: 25rem;
-    left: 7.6rem;
->>>>>>>> origin/#3-skapa-och-designa-välkomstsegmentet:style.css
-=======
->>>>>>> changed css
 }
