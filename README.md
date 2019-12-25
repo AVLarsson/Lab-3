@@ -11,3 +11,8 @@ Användaren kan själv lägga till "att göra-punkter"/"to dos" genom att ange d
 ### Dagens tid och datum
 Uppe ligger ett block som visar både dagens (rörliga) tid och datum.
 
+#### Repo
+https://github.com/AVLarsson/Lab-3
+
+#### Demo
+https://avlarsson.github.io/Lab-3/
