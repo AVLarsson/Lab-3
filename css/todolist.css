@@ -1,7 +1,3 @@
-fieldset {
-    margin: .5rem;
-}
-
 form {
     display: flex;
     flex-flow: column wrap;
