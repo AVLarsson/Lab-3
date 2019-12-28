@@ -20,16 +20,16 @@ function printDate() {
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     let months = [
-        "January",
-        "February",
-        "March",
+        "Januari",
+        "Februari",
+        "Mars",
         "April",
-        "May",
-        "June",
-        "July",
-        "August",
+        "Maj",
+        "Juni",
+        "Juli",
+        "Augusti",
         "September",
-        "October",
+        "Oktober",
         "November",
         "December"
     ];
@@ -50,6 +50,7 @@ function printDate() {
         }
         document.getElementsByClassName('days')[0].innerHTML = cells;
     }
+
 }
 
 /**
@@ -60,11 +61,13 @@ function printDate() {
  * @returns {[string | number]} dateContent
  */
 function dayNumber(calDate, calMonth, calYear) {
+    let emptyListMessage = document.querySelector('.notodos');
     const allToDos = getToDoList();
     let dateContent = [];
     calMonth = calMonth + 1;
     // Check if to dos exist
     if (allToDos.length) {
+        emptyListMessage.classList.add('hide');
         allToDos.forEach(function (toDo) {
             const newDate = new Date(toDo[1]);
             let toDoDate = newDate.getDate();
@@ -72,11 +75,11 @@ function dayNumber(calDate, calMonth, calYear) {
             toDoMonth += 1;
             let toDoYear = newDate.getFullYear();
 
-            if (calYear = toDoYear) {
+            if (calYear == toDoYear) {
                 if (calMonth === toDoMonth) {
                     if (calDate === toDoDate) {
 
-                        // Create HTML element, add content and remove button
+                        // Create HTML element and add content
 
                         let div = document.createElement('div');
                         div.classList.add('savedtodo');
@@ -90,13 +93,14 @@ function dayNumber(calDate, calMonth, calYear) {
 
         // Add date number and number of tasks
         if (0 < dateContent.length) {
-            dateContent.unshift("<span class='task_number'>" + dateContent.length + " task(s)</span>");
+            dateContent.unshift("<span class='task_number'>" + dateContent.length + "</span>");
         }
         dateContent.unshift("<span class='date_number'>" + calDate + "</span>");
     }
     // Check if to dos don't exist
     else if (!allToDos.length) {
-        dateContent.push(calDate);
+        dateContent.push("<span class='date_number'>" + calDate + "</span>");
+        emptyListMessage.classList.remove('hide');
     }
     // Return content to print to array
     return dateContent.join(" ");
@@ -164,7 +168,6 @@ function showWarning() {
     button.classList.add('red');
     setTimeout(function () {
         button.innerText = originalText;
-        button.classList.remove('red');
     }, 1500);
 }
 
@@ -225,16 +228,10 @@ function addRemoveButtons() {
     return false;
 }
 
-
-/** Show/remove calendar */
-function myCalendar() {
-    let cal = document.getElementById("showCalendar");
-    if (cal.classList.contains("showCalendar")) {
-        cal.classList.remove("showCalendar");
-    }
-    else {
-        cal.classList.add("showCalendar");
-    }
-
-    event.preventDefault();
+/**
+ * 
+ * @param {HTMLSpanElement} text 
+ */
+function showEmptyMessage(text) {
+    text.classList.add('hide');
 }

@@ -1,14 +1,28 @@
 /** Big screen **/
 @media only screen and (min-width: 1000px) {
-    /* CALENDAR */
-    .calendar {
-    }
-
     .container {
         grid-template-rows: 3fr, 7fr;
         grid-template-columns: 3fr, 7fr;
         grid-template: 'clock header' 'todo calendar';
     }
+
+    .month {
+        width: calc(20vw + 6rem);
+        margin-left: calc(-20vw - 6rem);
+    }
+
+    .calendar {
+        width: calc(80vw - 6rem);
+    }
+
+    .weekdays {
+        font-size: 1rem;
+    }
+
+    .todo {
+        width: calc(20vw + 6rem);
+    }
+
     fieldset {
         height: 19rem;
         display: grid;
@@ -22,11 +36,17 @@
         /* top: 16.1rem; */
         left: 9.6rem;
     }
-    
-    #add {
-        display: grid;
-        /* position: fixed; */
-        /* top: 14.5rem; */
-        left: 9.6rem;
+
+    .date_number {
+        font-size: calc(.2vw + .8rem);
     }
+
+    legend, h3 {
+        width: calc(20vw + 4rem);
+    }
+
+    .alltodos > ul {
+        width: calc(20vw + 5rem);
+    }
+
 }
