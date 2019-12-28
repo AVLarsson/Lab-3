@@ -142,7 +142,7 @@ function addToDo() {
     // Check if input fields are empty
     if (task == (null || undefined || "") ||
         date == (null || undefined || "")) {
-            showWarning();
+        showWarning();
     }
     else if (date && task) {
         let allToDos = getToDoList();
@@ -176,7 +176,7 @@ function removeToDo() {
     let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
     allToDos.splice(id, 1);
-    
+
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
     return false;
@@ -184,24 +184,27 @@ function removeToDo() {
 
 /**
  * Print to do list
- * @returns addRemoveButtons - prevent page reload and fire addRemoveButtons function.
+ * @returns addRemoveButtons() - prevent page reload and fire addRemoveButtons function.
  */
 function printToDos() {
     let allToDos = getToDoList();
     let listElement = document.querySelector('.alltodos');
     let ul = document.createElement('ul');
-    
+
     allToDos.forEach(function (toDo) {
         let removeButton = document.createElement('button');
         removeButton.classList.add('remove');
         removeButton.setAttribute('id', allToDos.indexOf(toDo));
-        removeButton.innerHTML = 'x';
+        removeButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
 
         let li = document.createElement('li');
-        li.append(toDo[1] + ": " + toDo[0]);
+        let span = document.createElement('span');
+        span.classList.add('date');
+        span.append(toDo[1]);
+        li.appendChild(span)
+        li.append(toDo[0]);
         li.appendChild(removeButton);
         ul.append(li);
-        
     });
     listElement.innerHTML = "";
     listElement.append(ul);
@@ -211,19 +214,19 @@ function printToDos() {
 }
 
 /**
- * Adds remove button for each to do in to do list.
+ * Adds remove button event listener for each to do in to do list.
  */
 function addRemoveButtons() {
     let removeButton = document.getElementsByClassName('remove');
-    for (let iTwo = 0; iTwo < removeButton.length; iTwo++) {
-        removeButton[iTwo].addEventListener('click', removeToDo);
+    for (let i = 0; i < removeButton.length; i++) {
+        removeButton[i].addEventListener('click', removeToDo);
     }
     event.preventDefault();
     return false;
-} 
+}
 
 
- /** Show/remove calendar */
+/** Show/remove calendar */
 function myCalendar() {
     let cal = document.getElementById("showCalendar");
     if (cal.classList.contains("showCalendar")) {
