@@ -15,7 +15,7 @@
     <script defer src="./js/clock.js"></script>
 
     <!-- Fonts & icons -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
         integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous" />
 
@@ -26,23 +26,24 @@
     <div class="container">
         <div id="clockDisplay" class="clockContainer"></div>
         <header>
-            <h2>Att-göra Kalender</h2>
+            <h2>Saker att ta tag i.</h2>
         </header>
 
         <section class="todo">
             <fieldset>
-                <legend><span><i class="fas fa-edit"></i><span>L</span>ägg till to do</span><i class="fas fa-plus-circle"></i></legend>
+                <legend><i class="fas fa-edit"></i>Lägg till to do.</legend>
                 <form class="formAddToDo">
-                    <label for="date">Datum</label>
+                    <label for="date">När?</label>
                     <input type="date" name="date" id="inputDate">
-                    <label for="Add To Do">Text</label>
+                    <label for="Add To Do">Vad?</label>
                     <input type="text" name="Add To Do" id="inputText" maxlength="35">
                     <button id="add" type="submit">Lägg till</button>
-                    <!-- <button class="buttonCalendar" onclick="myCalendar()">Kalender</button> -->
                 </form>
             </fieldset>
-            <h3><i class="far fa-list-alt"></i><span>A</span>tt göra hittills</h3>
-            <div class="alltodos"></div>
+            <h3><i class="far fa-list-alt"></i>Att göra hittills.</h3>
+            <div class="alltodos">
+            </div>
+            <span class="notodos">... inget att göra ännu!</span>
         </section>
         <div id="showCalendar" class="displayGrid showCalendar">
 
