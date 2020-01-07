@@ -1,5 +1,3 @@
-"use strict";
-
 /* On load, print days, show clock and add event listener to add button */
 window.addEventListener('load', () => {
     printDate();
@@ -22,16 +20,16 @@ function printDate() {
     let endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
     let previousDate = new Date(currentYear, currentMonth, 0).getDate();
     let months = [
-        "January",
-        "February",
-        "March",
+        "Januari",
+        "Februari",
+        "Mars",
         "April",
-        "May",
-        "June",
-        "July",
-        "August",
+        "Maj",
+        "Juni",
+        "Juli",
+        "Augusti",
         "September",
-        "October",
+        "Oktober",
         "November",
         "December"
     ];
@@ -51,11 +49,8 @@ function printDate() {
             cells += "<div>" + dayContent + "</div>";
         }
         document.getElementsByClassName('days')[0].innerHTML = cells;
-        let removeButton = document.getElementsByClassName('remove');
-        for (let iTwo = 0; iTwo < removeButton.length; iTwo++) {
-            removeButton[iTwo].addEventListener('click', removeToDo);
-        }
     }
+
 }
 
 /**
@@ -66,11 +61,13 @@ function printDate() {
  * @returns {[string | number]} dateContent
  */
 function dayNumber(calDate, calMonth, calYear) {
+    let emptyListMessage = document.querySelector('.notodos');
     const allToDos = getToDoList();
     let dateContent = [];
     calMonth = calMonth + 1;
     // Check if to dos exist
     if (allToDos.length) {
+        emptyListMessage.classList.add('hide');
         allToDos.forEach(function (toDo) {
             const newDate = new Date(toDo[1]);
             let toDoDate = newDate.getDate();
@@ -78,19 +75,15 @@ function dayNumber(calDate, calMonth, calYear) {
             toDoMonth += 1;
             let toDoYear = newDate.getFullYear();
 
-            if (calYear = toDoYear) {
+            if (calYear == toDoYear) {
                 if (calMonth === toDoMonth) {
                     if (calDate === toDoDate) {
 
-                        // Create HTML element, add content and remove button
-                        let removeButton = document.createElement('button')
-                        removeButton.classList.add('remove');
-                        removeButton.setAttribute('id', allToDos.indexOf(toDo));
-                        removeButton.innerHTML = 'x';
+                        // Create HTML element and add content
+
                         let div = document.createElement('div');
                         div.classList.add('savedtodo');
                         div.innerHTML = toDo[0];
-                        div.appendChild(removeButton);
                         dateContent.push(div.outerHTML)
                         dateContent.join(" ");
                     }
@@ -100,13 +93,14 @@ function dayNumber(calDate, calMonth, calYear) {
 
         // Add date number and number of tasks
         if (0 < dateContent.length) {
-            dateContent.unshift("<span class='task_number'>" + dateContent.length + " task(s)</span>");
+            dateContent.unshift("<span class='task_number'>" + dateContent.length + "</span>");
         }
         dateContent.unshift("<span class='date_number'>" + calDate + "</span>");
     }
     // Check if to dos don't exist
     else if (!allToDos.length) {
-        dateContent.push(calDate);
+        dateContent.push("<span class='date_number'>" + calDate + "</span>");
+        emptyListMessage.classList.remove('hide');
     }
     // Return content to print to array
     return dateContent.join(" ");
@@ -152,7 +146,7 @@ function addToDo() {
     // Check if input fields are empty
     if (task == (null || undefined || "") ||
         date == (null || undefined || "")) {
-            showWarning();
+        showWarning();
     }
     else if (date && task) {
         let allToDos = getToDoList();
@@ -174,7 +168,6 @@ function showWarning() {
     button.classList.add('red');
     setTimeout(function () {
         button.innerText = originalText;
-        button.classList.remove('red');
     }, 1500);
 }
 
@@ -186,33 +179,59 @@ function removeToDo() {
     let id = event.currentTarget.getAttribute('id');
     let allToDos = getToDoList();
     allToDos.splice(id, 1);
+
     localStorage.setItem('todo', JSON.stringify(allToDos));
     printDate();
     return false;
 }
 
+/**
+ * Print to do list
+ * @returns addRemoveButtons() - prevent page reload and fire addRemoveButtons function.
+ */
 function printToDos() {
     let allToDos = getToDoList();
     let listElement = document.querySelector('.alltodos');
     let ul = document.createElement('ul');
+
     allToDos.forEach(function (toDo) {
+        let removeButton = document.createElement('button');
+        removeButton.classList.add('remove');
+        removeButton.setAttribute('id', allToDos.indexOf(toDo));
+        removeButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
+
         let li = document.createElement('li');
-        li.append(toDo[1] + ": " + toDo[0])
+        let span = document.createElement('span');
+        span.classList.add('date');
+        span.append(toDo[1]);
+        li.appendChild(span)
+        li.append(toDo[0]);
+        li.appendChild(removeButton);
         ul.append(li);
     });
     listElement.innerHTML = "";
     listElement.append(ul);
+
+    event.preventDefault();
+    return addRemoveButtons();
 }
 
 /**
- * (skriv vad den gör här, t ex Show calendar)
+ * Adds remove button event listener for each to do in to do list.
  */
-function myFunction() {
-    let x = document.getElementById("showCalendar");
-    if (x.classList.contains("showCalendar")) {
-        x.classList.remove("showCalendar");
+function addRemoveButtons() {
+    let removeButton = document.getElementsByClassName('remove');
+    for (let i = 0; i < removeButton.length; i++) {
+        removeButton[i].addEventListener('click', removeToDo);
     }
-    else {
-        x.classList.add("showCalendar");
-    }
+    event.preventDefault();
+    return false;
+}
+
+/**
+ * 
+ * @param {HTMLSpanElement} text 
+ */
+function showEmptyMessage(text) {
+    text.classList.add('hide');
 }

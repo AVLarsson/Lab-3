@@ -15,32 +15,35 @@
     <script defer src="./js/clock.js"></script>
 
     <!-- Fonts & icons -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+        integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous" />
 
-    <title>Document</title>
+    <title>Kalender</title>
 </head>
 
 <body>
     <div class="container">
         <div id="clockDisplay" class="clockContainer"></div>
         <header>
-            Kalender
+            <h2>Saker att ta tag i.</h2>
         </header>
 
         <section class="todo">
             <fieldset>
-                <legend>To Do-list</legend>
+                <legend><i class="fas fa-edit"></i>Lägg till to do.</legend>
                 <form class="formAddToDo">
-                    <label for="date">Välj datum</label>
-                    <input type="date" name="date" id="inputDate" required>
-                    <label for="Add To Do">Lägg till</label>
-                    <input type="text" name="Add To Do" id="inputText" maxlength="35" required>
+                    <label for="date">När?</label>
+                    <input type="date" name="date" id="inputDate">
+                    <label for="Add To Do">Vad?</label>
+                    <input type="text" name="Add To Do" id="inputText" maxlength="35">
                     <button id="add" type="submit">Lägg till</button>
-                    <div class="alltodos"></div>
-                    <button class="buttonCalendar" onclick="myFunction()">Kalender</button>
-            </form>
-                </fieldset>
+                </form>
+            </fieldset>
+            <h3><i class="far fa-list-alt"></i>Att göra hittills.</h3>
+            <div class="alltodos">
+            </div>
+            <span class="notodos">... inget att göra ännu!</span>
         </section>
         <div id="showCalendar" class="displayGrid showCalendar">
 

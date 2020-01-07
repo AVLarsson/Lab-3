@@ -1,34 +1,34 @@
 /** Show clock */
 function renderTime() {
     // Date
-    let myDate = new Date();
-    let day = myDate.getDay();
-    let month = myDate.getMonth();
-    let daym = myDate.getDate();
-    let dayArray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-    let montArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+    let dateObj = new Date();
+    let day = dateObj.getDay();
+    let month = dateObj.getMonth();
+    let date = dateObj.getDate();
+    let days = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
+    let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
     // Time
     let currentTime = new Date();
-    let h = currentTime.getHours();
-    let m = currentTime.getMinutes();
-    let s = currentTime.getSeconds();
-    if (h === 24) {
-        h = 0;
+    let hours = currentTime.getHours();
+    let minutes = currentTime.getMinutes();
+    let seconds = currentTime.getSeconds();
+    if (hours === 24) {
+        hours = 0;
     }
-    else if (h > 12) {
-        h = h - 0;
+    else if (hours > 12) {
+        hours = hours - 0;
     }
-    if (h < 10) {
-        h = "0" + h;
+    if (hours < 10) {
+        hours = "0" + hours;
     }
-    if (m < 10) {
-        m = "0" + m;
+    if (minutes < 10) {
+        minutes = "0" + minutes;
     }
-    if (s < 10) {
-        s = "0" + s;
+    if (seconds < 10) {
+        seconds = "0" + seconds;
     }
-    let myClock = document.getElementById("clockDisplay");
-    myClock.textContent = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
-    myClock.innerText = "" + dayArray[day] + " " + daym + "/" + montArray[month] + " " + " " + h + ":" + m + ":" + s;
+    let clock = document.getElementById("clockDisplay");
+    clock.textContent = days[day] + " " + date + "/" + months[month] + " " + hours + ":" + minutes + ":" + seconds;
+    clock.innerText = days[day] + " " + date + "/" + months[month] + " " + hours + ":" + minutes + ":" + seconds;
     setTimeout("renderTime()", 1000);
 }
