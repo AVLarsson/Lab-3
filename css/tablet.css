@@ -103,7 +103,7 @@
         flex-direction: column;
         min-height: calc((100vh - 18rem) / 7);
         word-break: break-all;
-        overflow-y: scroll;
+        overflow-y: auto;
         border-bottom: .04rem solid rgb(197, 197, 197);
         border-right: .04rem solid rgb(197, 197, 197);
     }
