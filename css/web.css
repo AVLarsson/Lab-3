@@ -1,9 +1,12 @@
 /** Big screen **/
 @media only screen and (min-width: 1000px) {
     .container {
-        grid-template-rows: 3fr, 7fr;
-        grid-template-columns: 3fr, 7fr;
+        display: grid !important;
         grid-template: 'clock header' 'todo calendar';
+    }
+    
+    .showCalendar {
+        grid-area: calendar;
     }
 
     .clockContainer {
@@ -48,8 +51,6 @@
 
     .buttonCalendar {
         display: grid;
-        /* position: fixed; */
-        /* top: 16.1rem; */
         left: 9.6rem;
     }
 
